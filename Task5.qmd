@@ -1,0 +1,45 @@
+---
+title: "Task5"
+author: "Plotnyk Roman"
+date: "26/11/2024"
+format:
+  html:
+    embed-resources: true
+editor: source
+---
+
+```{r}
+# Load required library
+library(ggplot2)
+library(dplyr)
+
+# Load the dataset
+df <- read.csv("airbnb.csv")
+```
+
+```{r}
+# 1. Histogram using Base Plotting System
+# Plot distribution of 'realSum' (Airbnb prices)
+hist(
+  df$realSum,
+  breaks = 30,
+  col = "skyblue",
+  main = "Distribution of Airbnb Prices (realSum)",
+  xlab = "Price (realSum)",
+  ylab = "Frequency"
+)
+```
+```{r}
+ggplot(df, aes(x = realSum, y = guest_satisfaction_overall, colour = person_capacity)) + geom_point()
+```
+
+```{r}
+df %>% 
+  filter(realSum < 1000) %>% 
+  ggplot(aes(x = day_type, y = realSum)) + geom_boxplot()
+```
+```{r}
+df %>% 
+  ggplot(aes(x = realSum, y = city)) + geom_boxplot()
+```
+
